@@ -1,0 +1,91 @@
+---
+title: "Disciplina R IBoT 2021"
+author: "Jaques E. Zanon"
+date: "01/05/2021"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Exercícios de operações básicas
+
+1- Suponha que você marcou o tempo que leva para chegar a cada uma de suas parcelas no campo. Os tempos em minutos foram: 18, 14, 14, 15, 14, 34, 16, 17, 21, 26. Passe estes valores para o R, chame o objeto de tempo. Usando funções do R ache o tempo máximo, mínimo e o *tempo* médio que você levou gasta para chegar em suas parcelas.
+
+
+```{r um,eval=FALSE}
+## Lembre-se de criar um objeto chamdo tempo e de utilizar o comando concatenar:
+
+tempo <- c(  ,  ,  )
+
+## Lembre-se também de algumas fuções básicas tipo:
+
+min()
+max()
+mean()
+
+```
+
+
+1.1- Ops, o valor 34 foi um erro, ele na verdade é 15. Sem digitar tudo novamente, e usando colchetes [], mude o valor e calcule novamente o tempo médio.
+
+```{r dois,eval=FALSE}
+## Lembre-se que o objeto tempo tem apenas uma dimensão:
+
+objeto_1_dimensao[]
+
+objeto_2_diemsao[,]
+
+```
+
+2- Você consegue prever o resultado dos comandos abaixo? Caso não consiga, execute os comandos e veja o resultado:
+
+```{r tres,eval=FALSE}
+x<-c(1,3,5,7,9)
+y<-c(2,3,5,7,11,13)
+
+a) x+1
+b) y*2
+c) length(x) e length(y)
+d) x + y
+e) y[3]
+f) y[-3]
+
+```
+
+3. Calcule a velocidade média de um objeto que percorreu 150 km em 2.5 horas. **Formula: vm = d/t**
+
+4. Suponha que você coletou 10 amostras em duas reservas, as 5 primeiras amostras foram na reserva **A** e as 5 ultimas na reserva **B**. Use a função rep para criar um objeto chamado locais que contenha 5 letras **A** seguidas por cinco letras **B**.
+
+```{r quatro,eval=FALSE}
+# Lembre-se da função rep(x, times=y) e rep(x, each=y)
+# dica:
+rep("A",1)
+rep("B",2)
+c("A","B")
+
+```
+
+8. Crie uma sequencia de dados de 1 a 30 apenas com números impares. Use a função **seq()**.
+
+9. Crie um objeto com estes dados: 9 0 10 13 15 17 18 17 22 11 15 e chame-o de **temp**. Agora faça as seguintes transformações com esses dados: 1) raiz quadrada de **temp**, 2) log natural de base 10 de **temp**, 3) log(x+1) de **temp**, 4) eleve os valores de **temp** ao quadrado.
+
+```{r cinco,eval=FALSE}
+# Dica: lembre-se das transformações no R.
+temp<-c()
+
+```
+
+Além de mandar por **e-mail** eu vou anexar todos os arquivos da aula em ninha pagina no GitHub [https://github.com/JaquesZanon/Disciplina_R_IBoT_2021](https://github.com/JaquesZanon/Disciplina_R_IBoT_2021).
+
+
+
+
+
+

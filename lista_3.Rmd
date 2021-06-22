@@ -1,0 +1,133 @@
+---
+title: "Lista sobre regressão e medidas de associação."
+author: "Jaques E. Zanon"
+date: "22/05/2021"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Regressão e medidas de associação.
+
+1- Considere os dados de formigas.txt na pasta da disiplina. Importe os dados novamente, em seguida faça um plot desses dados. No plot, considere o eixo x = **Elevation** e o y = **AntSpeciesDensity**. Considere fazer um transformação log desses dados. 
+  Depois faça uma regressão linear simples considerando como variavél dependente **AntSpeciesDensity** e independende **Elevation**. Plote o resultado.
+```{r um,eval=FALSE}
+## Importando:
+formigas<-read.table("formigas.txt",header=T)
+
+## Plotando o grafico
+plot(x = formigas$Elevation,
+     y = "termie você")
+
+## Tranformando em Log na base 10
+log10(formigas$"termine você"+1) #Lembra de adiconar 1 caso tenha abundancia zero.
+
+## Agora a regressão
+result<-lm("dependente"~"independente")
+
+## Plot com resultado da regressão
+plot(x = formigas$Elevation,
+     y = "termie você",
+     main = "Título go grafico",
+     xlab = "Título do eixo x",
+     ylab = "Título do eixo y")
+
+abline(result, col='red')# resultado da regresão em vermelho.
+
+```
+
+2. Importe o arquivo *tabela.txt* enviado pelo e-mail. Carrege o pacote **vegan**. Quantas espécies existem na tabela? Qual o total de observações? Existem locais com zero espécies? As parcelas diferem em numero de indivíduos total? E as populações de espécies diferem de tamanho?
+  Em seguida calcule três indices de associação entre **objetos** (Q-mode): A distância de hellinger, a distância de Bray-Curtis e a distância euclidiana. Substitua o que está entre aspas sempre que conveniente.
+
+
+```{r dois,eval=FALSE}
+## Importando:
+df<-read.table("nome_do_arquivo.txt",header=T)
+library(vegan)
+
+## Nessa tabela temos infromações categóricas também. Vamos deixa-las de lado por agora:
+df_aux <- df[,-1:-2]# retirar as duas primeiras colunas.
+
+## Quantas espécies?
+ncol()
+
+## Quantas obs?
+nrow()
+
+## Locais com zero espécies?
+rowSums()
+
+# E as parcelas são diferentes em abundancia? Vamos fazer um boxplot:
+plot(rowSums()~factor(df$parcela),
+     main="Abundancia entre parcelas")# ou também
+boxplot(rowSums()~factor(df$parcela),
+     main="Abundancia entre parcelas")# o comando factor() serve para indicar ao R que estamos tratando de fatores.
+
+## Tamanho das populações de sp.
+colSums()
+
+## Agora o modo Q:
+vegdist("df ou df_aux?",method="bray")# distancia de bray-curtis
+
+# Hellinger:
+decostand("df ou df_aux?",method="hel")# transformação e depois: 
+vegdist("dados tranforamdos",method="eu")# distancia euclidiana
+
+# Euclidiana
+vegdist("df ou df_aux?",method="eu")
+```
+
+3. Agora compare as distâncias calculadas, com a distância euclidiana. Observe as diferentes *outputs* para cada indice e como eles se relacionan. Lembre-se que Hellinger e Bray-Curtis são assimétricos e a Euclidiana é simétrico.
+```{r tres,eval=FALSE}
+## Podemos fazer isso:
+
+a <- as.vector("distancia_hellinger")
+b <- as.vector("distancia_Bray_curtis")
+c <- as.vector("distancia_euclidiana")
+
+abc <- cbind(a, b, c)
+
+pairs(abc ,
+      upper.panel = NULL)
+
+
+```
+
+4. Vamos dar um "visu" diferente para os dados. Vamos fazer um heatmap com os dados brutos (raw) e transformados (Hellinger). Observe com calma os gráficos e tente interpreta-los.
+```{r quatro,eval=FALSE}
+# Heatmap dados brutos:
+heatmap(df_aux)
+
+# Transforme os dados:
+decostand("df ou df_aux?",method="hel")# transformação hellinger
+
+# Heatmap dados transformados
+heatmap("transformados")
+
+# Compare os heatmaps, o que muda em relação as linhas? Ou seja, suas unidades amostrais.
+```
+
+5. Vamos de PCA? Faça uma PCA das sp. Isso mesmo, podemos sim fazer PCA com espécies, mas lembre-se dos double-zeros. Para isso temos que transformar os dados e só depois fazer a PCA. Faça com dados brutos e depois transformados. Compare os resultados.
+```{r cinco,eval=FALSE}
+library(vegan)
+mob <- rda("df_brutos")
+mob.hel <- rda("df_transformados_hellinger")
+
+# temos uma função que plota a PCA melhor!
+biplot(mob, scaling = "symmetric", type = c("text", "points"))
+biplot(mob.hel, scaling = "symmetric", type = c("text", "points"))
+```
+
+Além de mandar por e-mail eu vou anexar todos os arquivos da aula em ninha pagina no [**GitHub**](https://github.com/JaquesZanon/Disciplina_R_IBoT_2021).
+
+
+
+
+

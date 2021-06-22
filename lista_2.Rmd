@@ -1,0 +1,114 @@
+---
+title: "Lista sobre regressão e medidas de associação."
+author: "Jaques E. Zanon"
+date: "22/05/2021"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Regressão e medidas de associação.
+
+1- Considere os dados de formigas.txt na pasta da disiplina.Importe os dados novamente, em seguida faça um plot desses dados. No plot, considere o eixo x = **Elevation** e o y = **AntSpeciesDensity**. Considere fazer um transformação log desses dados. 
+  Depois faça uma regressão linear simples considerando como variavél dependente **AntSpeciesDensity** e independende **Elevation**. Plote o resultado.
+```{r um,eval=FALSE}
+## Importando:
+formigas<-read.table("formigas.txt",header=T)
+
+## Plotando o grafico
+plot(x = formigas$Elevation,
+     y = "termie você")
+
+## Tranformando em Log na base 10
+log10(formigas$"termine você"+1) #Lembra de adiconar 1 caso tenha abundancia zero.
+
+## Agora a regressão
+result<-lm("dependente"~"independente")
+
+## Plot com resultado da regressão
+plot(x = formigas$Elevation,
+     y = "termie você",
+     main = "Título go grafico",
+     xlab = "Título do eixo x",
+     ylab = "Título do eixo y")
+
+abline(result, col='red')# resultado da regresão em vermelho.
+
+```
+
+2. Importe o arquivo *tabela.txt* enviado pelo e-mail. Carrege o pacote **vegan**. Quantas espécies existem na tabela? Qual o total de observações? Existem locais com zero espécies?
+Em seguida calcule três indices de associação entre **objetos** (Q-mode): A distância de hellinger, a distância de Bray-Curtis e a distância euclidiana.
+
+
+```{r dois,eval=FALSE}
+## Importando:
+tabela<-read.table("nome_do_arquivo.txt",header=T)
+
+
+# Combine os vetores Para formar a matrix A 3X3:
+A <- 
+  
+# Mundar os nomes das colunas para a, b e c:
+colnames(A) <- 
+  
+# O último passo é transpor a matriz. E agora, como fazer isso?
+  
+# Conferindo o resultado final se é realmente uma matriz:
+is.matrix(A)
+```
+
+5. Considere o vetor x <- c(4, 6, 5, 7, 10, 9, 4, 15). Qual é o valor de
+c(4,6,5,7,10,9,4,15) < 7 ?
+```{r tres,eval=FALSE}
+a. TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE
+
+b. TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE
+
+c. FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE
+
+d. TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE
+
+e. TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE
+
+```
+
+6. Se X = c(34,33,65,37,89,NA,43,NA,11,NA,23,NA), então qual sentença abaixo
+retornará a conta do número de ocorrências **NA** em ***X**?
+```{r quatro,eval=FALSE}
+a. sum(X==NA)
+
+b. sum(X == NA, is.na(X))
+
+c. sum(is.na(X))
+
+```
+
+7. Se x <- c("ss", "aa", "ff", "kk", "bb"), qual será o terceiro valor na
+na operação de índice de vetor x[c(2, 4, 4)]?
+```{r cinco,eval=FALSE}
+a. "uu"
+
+b. NA
+
+c. "kk"
+
+c. "ss"
+
+c. "aa"
+
+```
+
+Além de mandar por e-mail eu vou anexar todos os arquivos da aula em ninha pagina no [**GitHub**](https://github.com/JaquesZanon/Disciplina_R_IBoT_2021).
+
+
+
+
+
+
